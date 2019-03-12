@@ -1,4 +1,3 @@
-#pragma once
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include <iostream>
@@ -31,7 +30,7 @@ int main(int argc, char ** argv) {
 	music.play();
 
 
-	Square greenSquare(50.0, 50.0,(float) squareLength, 100.0, 100.0, WW, WH);
+	Square greenSquare(50.0, 50.0, squareLength, 110.0, 100.0, WW, WH);
 
 
 	int numberOfSquares = 6;
@@ -51,7 +50,6 @@ int main(int argc, char ** argv) {
 				bool ycollision = checkCollision(squares[j].getPosition().y, y, 0, 0, 0);
 				if (xcollision && ycollision) {
 					overlapping = true;
-					printf("PASS THE BOOF");
 					srand((int)time(0) * (i + j) * (i + j));
 					x = rand() % WW;
 					y = rand() % WH;
@@ -183,6 +181,9 @@ int main(int argc, char ** argv) {
 			//	printf("square %i x: %f y: %f \n", i, squares[i].getPosition().x, squares[i].getPosition().y);
 			renderWindow.draw(squares[i]);
 		}
+		greenSquare.move(deltaTime.asSeconds());
+		renderWindow.draw(greenSquare.getSquare());
+
 		renderWindow.display();
 	}
 }
@@ -207,6 +208,7 @@ bool checkCollision(float coord, float coord2, float velocity1, float velocity2,
 	return (check1 && check2);
 }
 
+//to return 3
 int getthree(int number) {
 	if (number == 3) {
 		return number;

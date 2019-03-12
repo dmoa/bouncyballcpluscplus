@@ -10,6 +10,24 @@ Square::Square(float x, float y, int squareLength, float _velocityX, float _velo
     WH = _WH;
 }
 
+RectangleShape Square::getSquare() {
+    return square;
+}
+
+void Square::setPosition(float x, float y){
+    square.setPosition(x, y);
+}
+void Square::setLength(float length){
+    square.setSize(Vector2f(length, length));
+}
+void Square::setVelocity(float velX, float velY){
+    velocityX = velX;
+    velocityY = velY;
+}
+void Square::setWorldDimention(float ww, float wh){
+    WW = ww;
+    WH = wh;
+}
 void Square::move(float dt) {
     if (checkWallSideCollision(dt)) {
         flipDirectionX();
